@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package calculator;
+
+service Calculator {
+    rpc makeOperation(OperationRequest) returns (OperationResponse);
+}
+
+message OperationRequest {
+    int32 num1 = 1;
+    int32 num2 = 2;
+    Operation operation = 3;
+}
+
+message OperationResponse {
+    float response = 1;
+}
+
+enum Operation {
+    SUM = 0;
+    SUB = 1;
+    DIV = 2;
+    MULT = 3;
+}
