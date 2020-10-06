@@ -30,6 +30,7 @@ rl.question("Choose the port you want to receive in\n", function (clientPort) {
 
     function receiveMessage(call, callback) {
       console.log(call.request.message);
+      callback({})
     }
 
     rl.addListener("line", (line) => {
