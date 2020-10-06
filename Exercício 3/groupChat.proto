@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package groupChat;
+
+service GroupChat {
+    rpc login(LoginRequest) returns (stream MessageResponse);
+    rpc sendMessage(MessageRequest) returns (Void);
+    rpc logout(Void) returns (Void);
+}
+
+message Void {}
+
+message MessageRequest {
+    string message = 1;
+}
+
+message MessageResponse {
+    string name = 1;
+    string message = 2;
+}
+
+message LoginRequest {
+    string name = 1;
+}
