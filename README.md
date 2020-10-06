@@ -1,1 +1,10 @@
-# IF1015-gRPC
+# Atividade Protocol Buffers e gRPC
+
+## Qual a vantagem de usar uma abordagem como gRPC ao invés de sockets?
+Na abordagem utilizando gRPC existe um controle muito melhor sobre o que será enviado e o que será recebido, além de existir uma maior eficiência na quantia de dados enviados pela rede. Além disso, com gRPC não precisamos nos preocupar com os detalhes de criarmos um protocolo próprio, abstraindo toda a parte de cabeçalhos e tamanho de mensagem, podendo focar apenas em confiar que o que definimos como mensagem chegará assim também do outro lado.
+
+## Ainda comparando-se com a abordagem utilizando sockets, qual o papel do Protocol Buffer nos exercícios acima? Há algum aumento de complexidade?
+O Protocol Buffer serve como uma maneira de definirmos os modelos que as mensagens enviadas em nosso serviço devem seguir de maneira agnóstica à linguagem de programação que venha a ser usada para implementar os serviços de fato. Ele adiciona uma etapa no processo de desenvolvimento na qual teremos que de fato definir os parâmetros das mensagens, o que pode ser considerado um aumento na complexidade, mas acho que isso tem uma série de vantagens que, especialmente a longo prazo, vão diminuir a complexidade de outras etapas.
+
+## De forma geral, quais as principais diferenças entre as implementações da calculadora e dos chats?
+Primeiramente para a calculadora, tentei usar um enum para definir a operação, o que não funcionou muito bem com a implementação do gRPC em Node. Ainda assim, ela era mais simples, tendo apenas um método que recebia os parâmetros e devolvia a resposta. No chat ponta-a-ponta tivemos algo mais unidirecional, onde era enviada uma mensagem e a sua resposta era vazia apenas para indicar que deu tudo certo. Já para o chat em grupo, foi mais interessante pois deu para dividir a parte do login, logout e das mensagens. Além disso, para o envio contínuo de mensagens, achei importante utilizar a funcionalidade de stream como resposta do servidor ao cliente.
