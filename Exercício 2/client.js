@@ -19,7 +19,7 @@ rl.question("Choose the port you want to receive in\n", function (clientPort) {
     );
 
     server.addService(chatp2p.Chatp2p.service, {
-      sendMessage: receiveMessage,
+      sendMessage: handleMessage,
     });
     server.start();
 
@@ -28,7 +28,7 @@ rl.question("Choose the port you want to receive in\n", function (clientPort) {
       grpc.credentials.createInsecure()
     );
 
-    function receiveMessage(call, callback) {
+    function handleMessage(call, callback) {
       console.log(call.request.message);
       callback({})
     }
