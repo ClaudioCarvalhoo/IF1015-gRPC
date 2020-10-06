@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package chatp2p;
+
+service Chatp2p {
+    rpc sendMessage(Message) returns (Void);
+}
+
+message Void {}
+
+message Message {
+    string message = 1;
+}
